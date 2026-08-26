@@ -1,8 +1,8 @@
 {
-  "name": "pikessoft",
-  "description": "Pikessoft developer tooling. One source of truth for AI coding agents across every repo.",
+  "name": "agents-md",
+  "description": "Developer tooling. One source of truth for AI coding agents across every repo.",
   "owner": {
-    "name": "Pikessoft"
+    "name": "Numan ijaz"
   },
   "plugins": [
     {

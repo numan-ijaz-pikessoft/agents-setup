@@ -47,7 +47,7 @@ changes. `/agents-setup:audit` enforces this.
 
 ```
 /plugin marketplace add numan-ijaz-pikessoft/agents-setup
-/plugin install agents-setup@pikessoft
+/plugin install agents-setup@agents-md
 ```
 
 Or from a local clone, without installing:
