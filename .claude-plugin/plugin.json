@@ -1,0 +1,10 @@
+{
+  "name": "agents-setup",
+  "description": "Consolidate a repository's AI-agent instructions into a single AGENTS.md read by Claude Code, Cursor, Codex, Gemini CLI, Antigravity, Windsurf and Copilot, with pure-pointer adapters instead of duplicated rule files.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Pikessoft"
+  },
+  "keywords": ["agents-md", "cursor", "codex", "gemini", "antigravity", "windsurf", "copilot"],
+  "license": "MIT"
+}

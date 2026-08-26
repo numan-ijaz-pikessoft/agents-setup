@@ -1,0 +1,8 @@
+---
+globs: {{GLOB_PATTERN}}
+description: {{GLOB_DESCRIPTION}}
+---
+
+Before editing this file, read {{SCOPED_RULE_LINKS}}.
+
+`AGENTS.md` in the repository root remains authoritative.

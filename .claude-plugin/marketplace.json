@@ -1,0 +1,26 @@
+{
+  "name": "pikessoft",
+  "description": "Pikessoft developer tooling. One source of truth for AI coding agents across every repo.",
+  "owner": {
+    "name": "Pikessoft"
+  },
+  "plugins": [
+    {
+      "name": "agents-setup",
+      "source": "./",
+      "displayName": "AGENTS.md Setup",
+      "description": "One source of truth for every AI coding agent. Writes AGENTS.md, generates pointer-only adapters, and audits for duplication and drift.",
+      "version": "1.0.0",
+      "category": "workflow",
+      "keywords": [
+        "agents-md",
+        "cursor",
+        "codex",
+        "gemini",
+        "antigravity",
+        "windsurf"
+      ],
+      "license": "MIT"
+    }
+  ]
+}

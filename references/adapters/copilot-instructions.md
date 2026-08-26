@@ -1,0 +1,3 @@
+Read `AGENTS.md` in the repository root. It is authoritative for this project.
+
+Detailed rules live in `{{RULES_DIR}}`. Follow them over any general convention.
