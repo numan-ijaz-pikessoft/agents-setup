@@ -46,14 +46,14 @@ changes. `/agents-setup:audit` enforces this.
 ## Install
 
 ```
-/plugin marketplace add pikessoft/agents-setup
+/plugin marketplace add numan-ijaz-pikessoft/agents-setup
 /plugin install agents-setup@pikessoft
 ```
 
-Or test locally without installing:
+Or from a local clone, without installing:
 
 ```bash
-claude --plugin-dir ~/Pikessoft/agents-setup
+claude --plugin-dir path/to/agents-setup
 ```
 
 ## Use
