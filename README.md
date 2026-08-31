@@ -1,13 +1,23 @@
 # agents-setup
 
-One source of truth for every AI coding agent in a repository.
+Keep your codebase AI-agnostic.
 
-`CLAUDE.md` is read by Claude Code and nothing else. `GEMINI.md` is read by Gemini and
-nothing else. A team on mixed tools ends up copying the same rules into five files that
-immediately start drifting.
+Most repos are quietly coupled to a single AI tool. `CLAUDE.md` and `.claude/` work only in
+Claude Code; `GEMINI.md` only in Gemini. A developer who prefers Cursor, Codex or Windsurf
+opens the same repo and their assistant knows nothing about the project's conventions — so
+teams recreate the same rules in each tool's format, and the copies drift apart.
 
-This plugin consolidates them into a single **`AGENTS.md`** — read natively by Codex, Cursor,
-Antigravity and Windsurf — plus pointer-only adapters for the tools that need one.
+We already keep codebases agnostic to the database, the cloud provider and the CI system. AI
+tooling should be no different: **the project's knowledge belongs in the repo in a neutral
+form, and each tool adapts to it** — not the other way around.
+
+That neutral form is **`AGENTS.md`** — read natively by Codex, Cursor, Antigravity, Windsurf
+and Copilot — plus pointer-only adapters for the two tools that still need one.
+
+You can't get to *fully* agnostic, and this doesn't pretend to: Claude Code and Gemini CLI
+each need a small pointer file, and genuinely tool-specific things (Claude hooks, Cursor glob
+rules) rightly stay tool-specific. The goal is that the **knowledge** is portable and the
+tool-bound layer stays thin — the same shape as a driver layer.
 
 ```
    CONTENT LIVES HERE (one file)         POINTERS ONLY (1-3 lines each)
