@@ -66,12 +66,64 @@ claude --plugin-dir path/to/agents-setup
 Both are also model-invoked — asking "set this repo up for Cursor and Codex" triggers the
 setup skill without the slash command.
 
+## Setting it up by hand
+
+The plugin automates this, but there is nothing magic in it. The whole pattern is six steps:
+
+1. **Create `AGENTS.md`** at the project root.
+2. **Write the rules there** — stack, common commands, conventions, and the things that
+   typically trip people up. Put the traps near the top; that section earns its keep fastest.
+3. **Move longer rules into `docs/rules/`** and link them from `AGENTS.md`. Keep the root file
+   a hub: a summary per area plus a link, not the full text.
+4. **Replace the contents of `CLAUDE.md`** with `@AGENTS.md`, leaving only genuinely
+   Claude-specific things (hooks, skills) beneath it.
+5. **For Gemini CLI**, add `.gemini/settings.json`:
+   ```json
+   { "context": { "fileName": ["AGENTS.md", "GEMINI.md"] } }
+   ```
+6. **Cursor, Codex, Antigravity and Windsurf** generally need no configuration — they read
+   `AGENTS.md` on their own.
+
+Optional belt-and-braces adapters for older tool versions live in
+[`references/adapters/`](references/adapters/). Each is a pointer; none carries rule text.
+
+## Worth knowing
+
+- **Keep `AGENTS.md` under 12,000 characters.** Antigravity truncates a longer rules file, and
+  it does so silently — the tail simply never arrives. This is the binding constraint on the
+  file's length, and the reason detail belongs in `docs/rules/`.
+- **Never let a pointer file accumulate rules of its own.** The moment an adapter holds a
+  rule, that rule lives in two places and a change means two edits. This is the single
+  failure mode that undoes the whole pattern, and what `/agents-setup:audit` checks first.
+- **Support varies by tool version.** Antigravity added `AGENTS.md` in v1.20.3 (March 2026);
+  Copilot's support is the newest of the group. If a tool appears to ignore the file, add that
+  tool's own rules file pointing back to it rather than duplicating the content.
+- **Concrete numbers in docs rot.** Counts like "23 services" drift within weeks. Recount when
+  you touch them, or leave them out.
+- **Don't create `.cursorrules` or `.windsurfrules`.** Both are superseded by `.cursor/rules/`
+  and `.windsurf/rules/`.
+- **If you mirror or sync the repo anywhere**, check the path filters before moving rule files.
+  Rules that were excluded because they sat under `.claude/` will start being exported once
+  they live in `docs/rules/`.
+
+## Checking that it works
+
+Open the project in each tool and ask it something only your rules would answer — for example
+*"what happens if I add a controller without a role decorator?"*
+
+A specific answer means the file was loaded. A generic one means it wasn't, and that tool
+needs its adapter. About thirty seconds per tool, worth doing once for each tool your team
+actually uses.
+
 ## Not a Claude user?
 
-`SKILL.md` is the cross-tool Agent Skills format. Copy `skills/` into your own agent's skills
-directory — Gemini CLI and Windsurf both read it. Or just read
-[`skills/setup/SKILL.md`](skills/setup/SKILL.md) and follow it by hand; it is written to be
-legible to a human.
+Follow **Setting it up by hand** above — that is the entire pattern, and it is tool-agnostic.
+
+`SKILL.md` is the cross-tool Agent Skills format, so copying `skills/` into another agent's
+skills directory may work depending on the tool and version; I have only tested the plugin
+under Claude Code. Either way,
+[`skills/setup/SKILL.md`](skills/setup/SKILL.md) is written to be legible to a human — reading
+it and following along works fine.
 
 And once a repo is set up, non-Claude developers need nothing at all: their tool reads
 `AGENTS.md` directly.
